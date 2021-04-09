@@ -2,14 +2,10 @@ import 'package:bayanihan_news/helper/widgets.dart';
 import 'package:flutter/material.dart';
 
 class AboutAppView extends StatelessWidget {
-  double _height;
-  double _width;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: _width,
-        height: _height,
         child: Column(
           children: [
             Opacity(opacity: 0.88, child: CustomAppBar()),
@@ -32,14 +28,10 @@ class AboutAppView extends StatelessWidget {
 }
 
 class ContactUsView extends StatelessWidget {
-  double _height;
-  double _width;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: _width,
-        height: _height,
         child: Column(
           children: [
             Opacity(opacity: 0.88, child: CustomAppBar()),
@@ -51,7 +43,7 @@ class ContactUsView extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(20),
               child: Text(
-                  'Github: https://github.com/jeikatsu/Bayanihan-News.git',
+                  'Github: https://github.com/clarkeustaquio/HackFest-2020-KMLNGMLKS-Corp.git',
                   style: TextStyle(fontSize: 18)),
             )
           ],
@@ -62,14 +54,10 @@ class ContactUsView extends StatelessWidget {
 }
 
 class AboutUsInfoView extends StatelessWidget {
-  double _height;
-  double _width;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: _width,
-        height: _height,
         child: Column(
           children: [
             Opacity(opacity: 0.88, child: CustomAppBar()),
@@ -101,14 +89,10 @@ class AboutUsInfoView extends StatelessWidget {
 }
 
 class VersionView extends StatelessWidget {
-  double _height;
-  double _width;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: _width,
-        height: _height,
         child: Column(
           children: [
             Opacity(opacity: 0.88, child: CustomAppBar()),
@@ -120,7 +104,7 @@ class VersionView extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.1,
             ),
-            Text('04.2021.09.00',
+            Text('12.2020.01.00',
                 style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold))
           ],
         ),
