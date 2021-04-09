@@ -42,18 +42,26 @@ def send_sms(request):
         if(request.data):
             try:
                 if(request.data['title'] == 'Subscribe'):
-                    daily_news = client.messages.create(
-                        body=subscribe_body[:1600], 
-                        from_=settings.TWILIO_NUMBER, to=request.data['phoneNumber']
-                    )
+                    try:
+                        daily_news = client.messages.create(
+                            body=subscribe_body[:1600], 
+                            from_=settings.TWILIO_NUMBER, to=request.data['phoneNumber']
+                        )
+                        isSuccess = True
+                    except Exception as e:
+                        pass
                 elif (request.data['title'] == 'Unsubscribe'):
-                    daily_news = client.messages.create(
-                        body=unsubscribe_body, 
-                        from_=settings.TWILIO_NUMBER, to=request.data['phoneNumber']
-                    )
-                isSuccess = True
-            except TwilioException as E:
-                print(E) # Should fail silently
+                    try:
+                        daily_news = client.messages.create(
+                            body=unsubscribe_body, 
+                            from_=settings.TWILIO_NUMBER, to=request.data['phoneNumber']
+                        )
+                        isSuccess = True
+                    except Exception as e:
+                        pass
+                
+            except TwilioException as e:
+                pass # Should fail silently
         
         # response['twilio_sid'] = daily_news.sid
         
@@ -75,7 +83,7 @@ def send_sms(request):
 def request_call():
     url = 'http://newsapi.org/v2/top-headlines?country=ph&apiKey=a3befdaa830b4a0595fa9b145c17929e'
 
-    cloud_datas = db.collection('users').get()
+    cloud_datas = db.collection('Subscribers').get()
     list_numbers = list()
 
     for data in cloud_datas:
@@ -97,10 +105,13 @@ def request_call():
     # Send message
     if(daily_news and list_numbers):
         for number in list_numbers:
-            client.messages.create(
-                body=daily_news[:1500],
-                from_=settings.TWILIO_NUMBER, to=number
-            )
+            try:
+                client.messages.create(
+                    body=daily_news[:1500],
+                    from_=settings.TWILIO_NUMBER, to=number
+                )
+            except Exception as e:
+                pass
 
     return Response({ 'status': 'OK' })
 
